@@ -4,41 +4,111 @@ let getComputerChoice = (item) => {
     return item[Math.floor(Math.random() * item.length)];z
 }
 
-function playRound(getComputerSelection) {
+var playerSc = 0;
 
-    let playerSelection = prompt("Chose rock, paper or scissors:")
-        playerSelection = playerSelection.toLowerCase();
-    
-        if (playerSelection === getComputerSelection)
-            return("Draw");
-        else if 
-        (playerSelection === "rock" && getComputerSelection === "scissors" || playerSelection === "paper" && getComputerSelection === "rock" || playerSelection === "scissors" && getComputerSelection === "paper")
-            return(1);
-        else
-            return(-1);
-}
+var computerSc = 0;
 
-function playGame(){
-    
-    let playerScore = 0;
-    let computerScore = 0;
+const container = document.getElementById('container');
 
-    while(playerScore != 5 && computerScore != 5)
-        {let result = playRound(getComputerChoice(choices));
+const playerScore = document.createElement('p')
 
-        if (result === -1)
-            computerScore += 1;
+playerScore.textContent= `Player score: ${playerSc}`;
 
-        if (result === +1)
-            playerScore += 1;
+const computerScore = document.createElement('p');
 
-        alert('Score: ' + playerScore + ' ' + computerScore)
-        }
-    
-    if (playerScore === 5)
-        alert("You win!")
+computerScore.textContent= `Computer score: ${computerSc}`;
+
+container.prepend(computerScore);
+
+container.prepend(playerScore);
+
+const btnRock = document.getElementById('rock');
+
+const btnPaper = document.getElementById('paper');
+
+const btnScissors = document.getElementById('scissors');
+
+btnRock.addEventListener('click', () => {
+    let playerChoice = 'rock';
+    let computerChoice = getComputerChoice(choices);
+    if(playerChoice === computerChoice)
+    console.log('Draw!');
+    else if (playerChoice === "rock" && computerChoice === "scissors" || playerChoice === "paper" && computerChoice === "rock" || playerChoice === "scissors" && computerChoice === "paper")
+        {playerSc += 1;
+        playerScore.textContent= `Player score: ${playerSc}`;}
     else
-        alert("You lose!")
-}
+        {computerSc += 1;
+        computerScore.textContent= `Computer score: ${computerSc}`;}
+        if (playerSc === 5){
+            playerSc = 0;
+            computerSc = 0;
+            playerScore.textContent= `Player score: ${playerSc}`;
+            computerScore.textContent= `Computer score: ${computerSc}`;
+            alert("You win!")
+        };
+        
+        if (computerSc === 5){
+            playerSc = 0;
+            computerSc = 0;
+            playerScore.textContent= `Player score: ${playerSc}`;
+            computerScore.textContent= `Computer score: ${computerSc}`;
+            alert("You lose!")
+        }
+});
 
-playGame()
+btnPaper.addEventListener('click', () => {
+    let playerChoice = 'paper';
+    let computerChoice = getComputerChoice(choices);
+    if(playerChoice === computerChoice)
+    console.log('Draw!');
+    else if (playerChoice === "rock" && computerChoice === "scissors" || playerChoice === "paper" && computerChoice === "rock" || playerChoice === "scissors" && computerChoice === "paper")
+        {playerSc += 1;
+        playerScore.textContent= `Player score: ${playerSc}`;}
+    else
+        {computerSc += 1;
+        computerScore.textContent= `Computer score: ${computerSc}`;}
+        if (playerSc === 5){
+            playerSc = 0;
+            computerSc = 0;
+            playerScore.textContent= `Player score: ${playerSc}`;
+            computerScore.textContent= `Computer score: ${computerSc}`;
+            alert("You win!")
+        };
+        
+        if (computerSc === 5){
+            playerSc = 0;
+            computerSc = 0;
+            playerScore.textContent= `Player score: ${playerSc}`;
+            computerScore.textContent= `Computer score: ${computerSc}`;
+            alert("You lose!")
+        }
+});
+
+btnScissors.addEventListener('click', () => {
+    let playerChoice = 'scissors';
+    let computerChoice = getComputerChoice(choices);
+    if(playerChoice === computerChoice)
+        console.log('Draw!');
+    else if (playerChoice === "rock" && computerChoice === "scissors" || playerChoice === "paper" && computerChoice === "rock" || playerChoice === "scissors" && computerChoice === "paper")
+        {playerSc += 1;
+        playerScore.textContent= `Player score: ${playerSc}`;}
+    else
+        {computerSc += 1;
+            computerScore.textContent= `Computer score: ${computerSc}`;}
+
+            if (playerSc === 5){
+                playerSc = 0;
+                computerSc = 0;
+                playerScore.textContent= `Player score: ${playerSc}`;
+                computerScore.textContent= `Computer score: ${computerSc}`;
+                alert("You win!")
+            };
+            
+            if (computerSc === 5){
+                playerSc = 0;
+                computerSc = 0;
+                playerScore.textContent= `Player score: ${playerSc}`;
+                computerScore.textContent= `Computer score: ${computerSc}`;
+                alert("You lose!")
+    }
+});
